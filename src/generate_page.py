@@ -3,7 +3,7 @@ from markdown_to_html import markdown_to_html_node
 from block_type import extract_title
 
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, basepath="/"):
     """
     Generate an HTML page from a markdown file using a template.
     
@@ -11,6 +11,7 @@ def generate_page(from_path, template_path, dest_path):
         from_path: Path to the markdown file
         template_path: Path to the HTML template file
         dest_path: Path to write the generated HTML file
+        basepath: Base URL path for generated links and assets
     """
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     
@@ -31,6 +32,8 @@ def generate_page(from_path, template_path, dest_path):
     
     # Replace placeholders in template
     output_content = template_content.replace('{{ Title }}', title).replace('{{ Content }}', html_string)
+    output_content = output_content.replace('href="/', f'href="{basepath}')
+    output_content = output_content.replace('src="/', f'src="{basepath}')
     
     # Create destination directory if it doesn't exist
     dest_dir = os.path.dirname(dest_path)

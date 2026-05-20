@@ -2,7 +2,7 @@ import os
 from generate_page import generate_page
 
 
-def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path_content, template_path, dest_dir_path, basepath="/"):
     """
     Recursively generate HTML pages from all markdown files in a content directory.
     
@@ -10,6 +10,7 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
         dir_path_content: Path to the content directory containing markdown files
         template_path: Path to the HTML template file
         dest_dir_path: Path to the destination directory for generated HTML files
+        basepath: Base URL path for generated links and assets
     """
     for root, dirs, files in os.walk(dir_path_content):
         for file in files:
@@ -21,4 +22,4 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
                 dest_path = os.path.join(dest_dir_path, html_file)
                 
                 # Generate the page
-                generate_page(markdown_file, template_path, dest_path)
+                generate_page(markdown_file, template_path, dest_path, basepath)

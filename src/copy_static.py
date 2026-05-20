@@ -24,6 +24,9 @@ def copy_directory_recursive(src, dest):
     
     # Recursively copy all files and directories
     for filename in os.listdir(src):
+        if filename.endswith(":Zone.Identifier"):
+            continue
+
         src_path = os.path.join(src, filename)
         dest_path = os.path.join(dest, filename)
         

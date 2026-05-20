@@ -37,7 +37,7 @@ class DirectoryIndexHandler(SimpleHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    serve_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'public')
+    serve_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'docs')
     DirectoryIndexHandler.base_path = serve_path
     
     server_address = ('', 8888)
